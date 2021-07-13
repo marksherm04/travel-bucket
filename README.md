@@ -27,7 +27,7 @@
   <br>
 
   # Deployed
-  Please follow this link to the deployed application [GitHub](https://github.com/marksherm04) to view my work.
+  Please follow this [Link](https://github.com/marksherm04) to the deployed application.
   
   # Please Contact us with any questions
   
