@@ -26,10 +26,10 @@
   
   <br>
 
-  # Please Contact me with any questions
-
   # Deployed
   Please follow this link to the deployed application [GitHub](https://github.com/marksherm04) to view my work.
+  
+  # Please Contact us with any questions
   
   # Email
   ## vkheyne@gmail.com marksherm04@gmail.com rwaynewhite15@gmail.com 
