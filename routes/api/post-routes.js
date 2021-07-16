@@ -5,7 +5,13 @@ const { Post, User, Love } = require('../../models');
 // get all users
 router.get('/', (req, res) => {
 	Post.findAll({
-		attributes: ['id', 'post_url', 'title', 'created_at'],
+		attributes: [
+			'id',
+			'post_url',
+			'title',
+			'created_at',
+			[sequelize.literal('(SELECT COUNT(*) FROM love WHERE post.id = love.post_id)'), 'love_count']
+		],
 		include: [
 			{
 				model: User,
@@ -26,7 +32,13 @@ router.get('/:id', (req, res) => {
 		where: {
 			id: req.params.id
 		},
-		attributes: ['id', 'post_url', 'title', 'created_at'],
+		attributes: [
+			'id',
+			'post_url',
+			'title',
+			'created_at'
+			[sequelize.literal('(SELECT COUNT(*) FROM love WHERE post.id = love.post_id)'), 'love_count']
+		],
 		include: [
 			{
 				model: User,
@@ -63,34 +75,13 @@ router.post('/', (req, res) => {
 
 // PUT /api/posts/lovedpost
 router.put('/upvote', (req, res) => {
-	Love.create({
-		user_id: req.body.user_id,
-		post_id: req.body.post_id
-	}).then(() => {
-		// find the post we just loved
-		return Post.findOne({
-			where: {
-				id: req.body.post_id
-			},
-			attributes: [
-				'id',
-				'post_url',
-				'title',
-				'created_at',
-
-				[
-					sequelize.literal('(SELECT COUNT(*) FROM love WHERE post.id = love.post_id)'),
-					'love_count'
-				]
-			]
-		})
-			.then(dbPostData => res.json(dbPostData))
-			.catch(err => {
-				console.log(err);
-				res.status(400).json(err);
-			});
-	})
-
+	// static method created in models/Post.js
+	Post.upvote(req.body, { Love })
+		.then(updatedPostData => res.json(updatedPostData))
+		.catch(err => {
+			console.log(err);
+			res.status(400).json(err);
+		});
 });
 
 
