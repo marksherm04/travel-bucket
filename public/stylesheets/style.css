@@ -72,18 +72,4 @@ body {
 	text-transform: capitalize;
 	margin-left: 8px;
     }
-    /* hides weather on page load until city input */
-    .weather-loading {
-	visibility: hidden;
-	max-height: 20px;
-	position: relative;
-    }
-    
-    .weather.loading::after {
-	visibility: visible;
-	content: "Loading...";
-	color: white;
-	position: absolute;
-	top: 0;
-	left: 20px;
-    }
+   
