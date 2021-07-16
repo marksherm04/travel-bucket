@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const { RSA_NO_PADDING } = require('constants');
-const { Post, User } = require('../../models');
+const sequelize = require('../../config/connection');
+const { Post, User, Love } = require('../../models');
 
 // get all users
 router.get('/', (req, res) => {
@@ -61,6 +61,39 @@ router.post('/', (req, res) => {
 		});
 });
 
+// PUT /api/posts/lovedpost
+router.put('/upvote', (req, res) => {
+	Love.create({
+		user_id: req.body.user_id,
+		post_id: req.body.post_id
+	}).then(() => {
+		// find the post we just loved
+		return Post.findOne({
+			where: {
+				id: req.body.post_id
+			},
+			attributes: [
+				'id',
+				'post_url',
+				'title',
+				'created_at',
+
+				[
+					sequelize.literal('(SELECT COUNT(*) FROM love WHERE post.id = love.post_id)'),
+					'love_count'
+				]
+			]
+		})
+			.then(dbPostData => res.json(dbPostData))
+			.catch(err => {
+				console.log(err);
+				res.status(400).json(err);
+			});
+	})
+
+});
+
+
 // update post
 router.put('/:id', (req, res) => {
 	Post.update(
@@ -101,7 +134,7 @@ router.delete('/:id', (req, res) => {
 		.catch(err => {
 			console.log(err);
 			res.status(500).json(err);
-		})
-})
+		});
+});
 
 module.exports = router;
