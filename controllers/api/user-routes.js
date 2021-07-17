@@ -65,13 +65,21 @@ router.post('/', (req, res) => {
 		email: req.body.email,
 		password: req.body.password
 	})
-		.then(dbUserData => res.json(dbUserData))
+		.then(dbUserData => {
+			req.session.save(() => {
+				req.session.user_id = dbUserData.id;
+				req.session.username = dbUserData.username;
+				req.session.loggedIn = true;
+
+				res.json(dbUserData);
+			});
+		})
 		.catch(err => {
 			console.log(err);
 			res.status(500).json(err);
 		});
 });
-
+// login route
 router.post('/login', (req, res) => {
 	// expects {email: 'mikes@gmail.com', password: 'password1234'}
 	User.findOne({
@@ -86,13 +94,32 @@ router.post('/login', (req, res) => {
 			}
 			// Verify user
 			const correctPassword = dbUserData.checkPassword(req.body.password);
+
 			if (!correctPassword) {
 				res.status(400).json({ message: 'Password incorrect!' });
 				return;
 			}
 
-			res.json({ user: dbUserData, message: 'You are logged in.' });
+			req.session.save(() => {
+				// session variables
+				req.session.user_id = dbUserData.id;
+				req.session.username = dbUserData.username;
+				req.session.loggedIn = true;
+
+				res.json({ user: dbUserData, message: 'You are logged in.' });
+			});
 		});
+});
+
+// logout route
+router.post('/logout', (req, res) => {
+	if (req.session.loggedIn) {
+		req.session.destroy(() => {
+			res.status(204).end();
+		});
+	} else {
+		res.status(404).end();
+	}
 });
 
 // PUT api/users/1
