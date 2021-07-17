@@ -2,7 +2,7 @@ const router = require('express').Router();
 const sequelize = require('../../config/connection');
 const { Post, User, Love, Comment } = require('../../models');
 
-// get all users
+// get all Posts
 router.get('/', (req, res) => {
 	Post.findAll({
 		order: [['created_at', 'DESC']],
@@ -35,47 +35,9 @@ router.get('/', (req, res) => {
 			res.status(500).json(err);
 		});
 });
-// get one user
-router.get('/:id', (req, res) => {
-	Post.findOne({
-		where: {
-			id: req.params.id
-		},
-		attributes: [
-			'id',
-			'post_url',
-			'title',
-			'created_at'
-			[sequelize.literal('(SELECT COUNT(*) FROM love WHERE post.id = love.post_id)'), 'love_count']
-		],
-		include: [
-			{
-				model: Comment,
-				attributes:['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-				include: {
-					model: User,
-					attributes: ['username']
-				}
-			},
-			{
-				model: User,
-				attributes: ['username']
-			}
-		]
-	})
-		.then(dbPostData => {
-			if (!dbPostData) {
-				res.status(404).json({ message: "no post found with this ID" });
-				return;
-			}
-			res.json(dbPostData);
-		})
-		.catch(err => {
-			console.log(err);
-			res.status(500).json(err);
-		});
-});
-// create post
+// get one Post
+
+// create Post
 router.post('/', (req, res) => {
 	// expects {title: 'Everyone wants to go to Hawaii!', post_url: 'https://hawaiitravel.com', user_id: 1}
 	Post.create({
@@ -92,13 +54,16 @@ router.post('/', (req, res) => {
 
 // PUT /api/posts/lovedpost
 router.put('/upvote', (req, res) => {
-	// static method created in models/Post.js
-	Post.upvote(req.body, { Love })
-		.then(updatedPostData => res.json(updatedPostData))
-		.catch(err => {
-			console.log(err);
-			res.status(400).json(err);
-		});
+	// see if session exists
+	if (req.session) {
+		// pass along session id with all broken down properities on req.body
+		Post.upvote({ ...req.body, user_id: req.session.user_id }, { Love, Comment, User })
+			.then(updatedPostData => res.json(updatedPostData))
+			.catch(err => {
+				console.log(err);
+				res.status(500).json(err);
+			});
+	}
 });
 
 
