@@ -51,7 +51,7 @@ router.get('/:id', (req, res) => {
 		include: [
 			{
 				model: Comment,
-				attributes:['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+				attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
 				include: {
 					model: User,
 					attributes: ['username']
@@ -92,13 +92,16 @@ router.post('/', (req, res) => {
 
 // PUT /api/posts/lovedpost
 router.put('/upvote', (req, res) => {
-	// static method created in models/Post.js
-	Post.upvote(req.body, { Love })
-		.then(updatedPostData => res.json(updatedPostData))
-		.catch(err => {
-			console.log(err);
-			res.status(400).json(err);
-		});
+	// see if session exists
+	if (req.session) {
+		// pass along session id with all broken down properities on req.body
+		Post.upvote({ ...req.body, user_id: req.session.user_id }, { Love, Comment, User })
+			.then(updatedPostData => res.json(updatedPostData))
+			.catch(err => {
+				console.log(err);
+				res.status(500).json(err);
+			});
+	}
 });
 
 
