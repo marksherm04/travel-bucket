@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Comment, Post } = require('../../models');
+const { Comment, Post, User } = require('../../models');
 
 router.get('/', (req, res) => {
 	Comment.findAll()
@@ -29,7 +29,7 @@ router.post('/', (req, res) => {
 router.delete('/:id', (req, res) => {
 	Comment.destroy({
 		where: {
-			id: id.params.id
+			id: req.params.id
 		}
 	})
 		.then(dbCommentData => {
