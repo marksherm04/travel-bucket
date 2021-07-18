@@ -1,0 +1,36 @@
+<section>
+	<h2>Create New Post</h2>
+
+	<form class="new-post-form">
+		<div>
+			<label for="post-title">Travel Location</label>
+			<input type="text" id="post-title" name="post-title" />
+		</div>
+		<div>
+			<label for="post_url">Blog or Travel Website Link</label>
+			<input id="post-url" name="post-url" />
+		</div>
+		{{!-- <div>
+			<!-- NEED TO PUT CORRECT CODE IN HERE FOR IMAGE UPLOAD-->
+			<label for="image-upload">Favorite Trip Picture</label>
+			<input id="image-url" name="image-url" />
+		</div> --}}
+		<button type="submit" class="btn">Submit Post</button>
+	</form>
+</section>
+
+{{#if posts.length}}
+<section>
+	<h2>Your Posts</h2>
+	<ol>
+		{{#each posts as |post|}}
+		<li>
+			{{> post-info post}}
+			<a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit Post</a>
+		</li>
+		{{/each}}
+	</ol>
+</section>
+{{/if}}
+
+<script src="/javascript/add-post.js"></script>

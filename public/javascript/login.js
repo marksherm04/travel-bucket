@@ -1,4 +1,4 @@
-async function loginForm(event) {
+async function loginFormHandler(event) {
 	event.preventDefault();
 
 	const email = document.querySelector('#email-login').value.trim();
@@ -15,14 +15,14 @@ async function loginForm(event) {
 		});
 
 		if (response.ok) {
-			document.location.replace('/');
+			document.location.replace('/dashboard');
 		} else {
 			alert(response.statusText);
 		}
 	}
 }
 
-async function singupForm(event) {
+async function singupFormHandler(event) {
 	event.preventDefault();
 
 	const username = document.querySelector('#user-signup').value.trim();
@@ -41,14 +41,14 @@ async function singupForm(event) {
 		});
 		// response status
 		if (response.ok) {
-			document.location.replace('/');
+			document.location.replace('/dashboard');
 		} else {
 			alert(response.statusText);
 		}
 	}
 }
 
-document.querySelector('.login-form').addEventListener('submit', loginForm);
+document.querySelector('.login-form').addEventListener('submit', loginFormHandler);
 
-document.querySelector('.signup-form').addEventListener('submit', singupForm);
+document.querySelector('.signup-form').addEventListener('submit', singupFormHandler);
 
