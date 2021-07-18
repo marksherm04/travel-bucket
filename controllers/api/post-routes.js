@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
 const { Post, User, Love, Comment } = require('../../models');
+const withAuth = require('../utils/auth');
 
 // get all Posts
 router.get('/', (req, res) => {
@@ -38,12 +39,12 @@ router.get('/', (req, res) => {
 // get one Post
 
 // create Post
-router.post('/', (req, res) => {
+router.post('/', withAuth, (req, res) => {
 	// expects {title: 'Everyone wants to go to Hawaii!', post_url: 'https://hawaiitravel.com', user_id: 1}
 	Post.create({
 		title: req.body.title,
 		post_url: req.body.post_url,
-		user_id: req.body.user_id
+		user_id: req.session.user_id
 	})
 		.then(dbPostData => res.json(dbPostData))
 		.catch(err => {
@@ -53,7 +54,7 @@ router.post('/', (req, res) => {
 });
 
 // PUT /api/posts/lovedpost
-router.put('/upvote', (req, res) => {
+router.put('/upvote', withAuth, (req, res) => {
 	// see if session exists
 	if (req.session) {
 		// pass along session id with all broken down properities on req.body
@@ -68,7 +69,7 @@ router.put('/upvote', (req, res) => {
 
 
 // update post
-router.put('/:id', (req, res) => {
+router.put('/:id', withAuth, (req, res) => {
 	Post.update(
 		{
 			title: req.body.title
@@ -91,7 +92,7 @@ router.put('/:id', (req, res) => {
 		});
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', withAuth, (req, res) => {
 	Post.destroy({
 		where: {
 			id: req.params.id
