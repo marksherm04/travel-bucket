@@ -11,11 +11,12 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
+	console.log(req.session);
 	// check if session is active (logged in)
 	if (req.session) {
 		Comment.create({
 			comment_text: req.body.comment_text,
-			user_id: req.body.user_id,
+			user_id: req.session.user_id,
 			post_id: req.body.post_id
 		})
 			.then(dbCommentData => res.json(dbCommentData))
