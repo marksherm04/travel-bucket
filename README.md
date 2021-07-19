@@ -27,7 +27,7 @@
   <br>
 
   # Deployed
-  Please follow this [Link](https://github.com/marksherm04) to the deployed application.
+  Please follow this [Link](https://travel-bucket.herokuapp.com/) to the deployed application.
   
   # Please Contact us with any questions
   
