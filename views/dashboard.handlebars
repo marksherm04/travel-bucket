@@ -18,7 +18,8 @@
 		<button type="submit" class="btn">Submit Post</button>
 	</form>
 </section>
-
+<br>
+<br>
 {{#if posts.length}}
 <section>
 	<h2>Your Posts</h2>
@@ -26,7 +27,7 @@
 		{{#each posts as |post|}}
 		<li>
 			{{> post-info post}}
-			<a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit Post</a>
+			<a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit or Delete Post</a>
 		</li>
 		{{/each}}
 	</ol>
