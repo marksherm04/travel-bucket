@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const {Post, User, Comment, Love } = require('../models');
+const { Post, User, Comment, Love } = require('../models');
 
 
 // get all posts for homepage
@@ -58,7 +58,13 @@ router.get('/post/:id', (req, res) => {
 		include: [
 			{
 				model: Comment,
-				attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+				attributes: [
+					'id',
+					'comment_text', 
+					'post_id', 
+					'user_id', 
+					'created_at'
+				],
 				include: {
 					model: User,
 					attributes: ['username']
