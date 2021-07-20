@@ -2,6 +2,8 @@ const express = require('express');
 const session = require('express-session');
 const path = require('path');
 const exphbs = require('express-handlebars');
+const multer = require('multer');
+const upload = multer({dest: __dirname + '/uploads/images'});
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -34,6 +36,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // turn on routes
 app.use(require('./controllers'));
+
+app.post('.upload', upload.single('photo'), (req, res) => {
+	if (req.file) {
+	} 
+	else throw 'err';
+});
 
 // turn on db and server connection
 sequelize.sync({ force: false }).then(() => {
