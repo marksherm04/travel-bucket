@@ -3,10 +3,16 @@
 		<a href='{{post_url}}' target='_blank'>{{title}}</a>
 		<span>({{format_url post_url}})</span>
 	</div>
+
+
+	{{!-- We may want to use this to show username above image but doesn't work as is --}}
+	{{!-- <h5 class="card-title">{{username}}</h5> --}}
 	<div class="meta">
-		{{love_count}} {{format_plural '❤' love_count}} by {{user.username}} on {{format_date created_at}}
+		{{love_count}} {{format_plural '❤' love_count}} by {{user.username}} on
+		{{format_date created_at}}
 		|
-		<a href='/post/{{id}}'>{{comments.length}} {{format_plural 'comment' comments.length}}</a>
+		<a href='/post/{{id}}'>{{comments.length}} {{format_plural 'comment'
+			comments.length}}</a>
+
 	</div>
 </article>
-

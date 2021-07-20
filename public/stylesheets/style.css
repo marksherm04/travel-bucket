@@ -89,6 +89,13 @@
 	padding: 2% 4%;
       }
 
+      .card {
+	      background-color: lightgrey;
+	      border-radius: 2px;
+	      border-color: black;
+	      display: flex;    
+      }
+
       .btn {
 	background-color: #225ca3;
 	color: white;
@@ -179,3 +186,4 @@
 	padding: 1%;
 	font-size: 110%;
       }
+
