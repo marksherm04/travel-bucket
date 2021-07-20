@@ -9,7 +9,7 @@
 			<span>({{format_url post.post_url}})</span>
 		</div>
 		<div>
-			{{post.love_count}}  {{format_plural "love" post.love_count}} by you on {{format_date post.created_at}}
+			{{post.love_count}}  {{format_plural '❤' post.love_count}} by you on {{format_date post.created_at}}
 			|
 			<a href="/post/{{post.id}}">{{post.comments.length}} {{format_plural "comment" post.comments.length}}</a>
 		</div>

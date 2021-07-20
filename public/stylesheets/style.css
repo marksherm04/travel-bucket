@@ -3,7 +3,7 @@
       }
       
       body, html {
-	height: 100%;
+	height: 40%;
 	padding: 0;
 	margin: 0;
 	font-family: sans-serif;
@@ -27,7 +27,7 @@
 	padding: 1%;
 	color: white;
 	font-weight: bold;
-	transition: background-color .1s;
+	transition: .1s;
 	cursor: pointer;
 	border-radius: 5px;
       }
@@ -75,13 +75,25 @@
       }
       
       .navbar {
-	border-bottom: 2px solid #ccc;
-	padding: 10px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100% !important;
+        left: 0;
+        border-bottom: 4px solid black;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        padding-right: 50px;
+        padding-left: 35px;
+        font-size: 24px;
       }
+
+      .navbar-wrapper .navbar {
+        width: 100% !important;
+        }
 
       header h1 {
 	font-size: 1em;
-
       }
       
       main {
@@ -90,10 +102,10 @@
       }
 
       .card {
-	      background-color: lightgrey;
-	      border-radius: 2px;
-	      border-color: black;
-	      display: flex;    
+	background-color: lightgrey;
+	border-radius: 2px;
+	border-color: black;
+	display: flex;    
       }
 
       .btn {
@@ -145,7 +157,7 @@
       
       .upvote-btn {
 	background-color: #197d0f;
-	transition: background-color .1s;
+	transition: .1s;
       }
       
       .upvote-btn:hover {
@@ -180,10 +192,14 @@
       }
       
       footer {
-	border-top: 1px solid #ccc;
-	display: flex;
-	justify-content: center;
-	padding: 1%;
-	font-size: 110%;
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+        font-size: 18px;
+        left: 0;
+        right: 0;
+        text-decoration: none;
+        color: #225ca3;
+        font-weight: bold;
       }
 
