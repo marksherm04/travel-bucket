@@ -1,7 +1,18 @@
-<ol class="post-list">
-	{{#each posts as |post|}}
-	<li>
-		{{> post-info post }}
-	</li>
-	{{/each}}
-</ol>
+<div class="row mt-4">
+	<div class="col-lg-4">
+		<ol class="post-list">
+			{{#each posts as |post|}}
+
+			<div class="card mt-4">
+				<img class="card-img-top" src="{{this.image}}" alt="card image">
+				<div class="card-body">
+					<li>
+						{{> post-info post }}
+					</li>
+				</div>
+			</div>
+
+			{{/each}}
+		</ol>
+	</div>
+</div>
