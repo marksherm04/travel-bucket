@@ -93,8 +93,7 @@
 	      background-color: lightgrey;
 	      border-radius: 2px;
 	      border-color: black;
-	      display: flex;
-	      justify-content: space-around;	      
+	      display: flex;    
       }
 
       .btn {
