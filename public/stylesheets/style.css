@@ -109,6 +109,10 @@
 	display: flex;    
       }
 
+      .card-group {
+	      display: flex;
+      }
+
       .btn {
 	background-color: #225ca3;
 	color: white;
