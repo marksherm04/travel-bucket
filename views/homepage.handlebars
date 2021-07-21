@@ -1,38 +1,36 @@
 <div class="container-fluid">
 	<div class="row">
+		{{#each posts as |post|}}
 		<div class="col-4">
-			<ol class="post-list">
 
-				{{#each posts as |post|}}
 
-				<div class="card mt-4" style="background-color:#e3f2fd;">
-					{{!-- <img class="card-img-top" src="{{this.image}}" alt="card image">
-					--}}
-					<img class="card-img-top">
-					<a href="https://en.wikipedia.org/wiki/Boracay" target="_blank"><img
-							src="//www.html.am/images/html-codes/links/boracay-white-beach-sunset-300x225.jpg"
-							class="img-fluid" width="300" height="225"
-							alt="Photo of White Beach in Boracay, Philippines"
-							style="border:0;" /></a>
-					<div class="card">
-						<div class="card-body">
 
-							<li>
-								{{> post-info post }}
-							</li>
-						</div>
-					</div>
-					<!-- Want to be able to have a href take viewing user to user that made the post's page-->
-					<div class="card footer">
-						<p>Adventure Guide: <a href="{{user.username}}">{{user.username}}</a> <br>
-						Website: <a href="https://www.florida.com" target="__blank">{{format_url post_url}}</a></p>
-						
+
+			<div class="card mt-4" style="background-color:#e3f2fd;">
+
+
+				<img class="card-img-top" src="{{this.photo}}" alt="card image">
+
+				<div class="card">
+					<div class="card-body">
+
+						{{> post-info post }}
+
 					</div>
 				</div>
+				<!-- Want to be able to have a href take viewing user to user that made the post's page-->
+				<div class="card footer">
+					<p>Adventure Guide: <a href="{{user.username}}">{{user.username}}</a>
+						<br>
+						Website: <a href="https://www.florida.com" target="__blank">{{format_url
+							post_url}}</a>
+					</p>
 
-				{{/each}}
+				</div>
+			</div>
 
-			</ol>
 		</div>
+		{{/each}}
+
 	</div>
 </div>

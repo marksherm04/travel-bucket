@@ -1,8 +1,12 @@
 <section>
 	<h2>Create New Post</h2>
 
-	<form class="new-post-form">
+	<form action="/api/posts/uploads" method="post" enctype="multipart/form-data">
+		<input type="file" accept="image/*" id="photo" name="photo"> 
+		<input type="submit" class="btn" value="Upload Picture">
+
 		<div>
+			<br>
 			<label for="post-title">Travel Location</label>
 			<input type="text" id="post-title" name="post-title" />
 		</div>
@@ -10,16 +14,7 @@
 			<label for="post_url">Blog or Travel Website Link</label>
 			<input id="post-url" name="post-url" />
 		</div>
-		<br>
-		<button type="submit" class="btn">Submit Post</button>
-
-		<form action="/upload" method="post" enctype="multipart/form-data">
-			<input type="file" accept="image/*" name="photo"> <br><br>
-			<input type="submit" class="btn" value="Upload Picture">
-		</form>
 	</form>
-
-	
 
 </section>
 <br>
@@ -27,14 +22,14 @@
 {{#if posts.length}}
 <section>
 	<h2>My Trips</h2>
-	<ol>
-		{{#each posts as |post|}}
-		<li>
-			{{> post-info post}}
-			<a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit or Delete Post</a>
-		</li>
-		{{/each}}
-	</ol>
+	<br>
+
+	{{#each posts as |post|}}
+	{{> post-info post}}
+	<a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit or Delete Post</a>
+
+	{{/each}}
+
 </section>
 {{/if}}
 
