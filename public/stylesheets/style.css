@@ -102,16 +102,34 @@
 	padding: 2% 4%;
       }
 
-      .card {
-	background-color: lightgrey;
-	border-radius: 2px;
-	border-color: black;
-	display: flex;    
+      .container {
+            padding-top: 50px;
       }
 
-      .card-group {
-	      display: flex;
+      .card {
+	background-color: #e3f2fd;
+      border: none;
+	display: flex;  
+      margin: auto;
+      padding-top: 25px;
+      padding-bottom: 25px;
+      padding-left: 20px; 
+      padding-right: 20px; 
       }
+
+      .card-img-top {
+            padding: 5px;
+            text-align: center;
+      }
+      
+      .img-fluid {
+            max-width: 100%;
+            height: auto;
+      }
+
+     p {
+           color: #225ca3;
+     }
 
       .btn {
 	background-color: #225ca3;
@@ -158,6 +176,10 @@
       .edit-link {
 	display: block;
 	margin: -1.5% 0 2% 0;
+      }
+
+      .h7 {
+            color: red;
       }
       
       .upvote-btn {

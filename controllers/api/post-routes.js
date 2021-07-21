@@ -2,6 +2,9 @@ const router = require('express').Router();
 const sequelize = require('../../config/connection');
 const { Post, User, Love, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
+const multer = require('multer');
+const upload = multer({ dest: __dirname + '../../../uploads' });
+
 
 // get all Posts
 router.get('/', (req, res) => {
@@ -83,7 +86,8 @@ router.post('/', withAuth, (req, res) => {
 	Post.create({
 		title: req.body.title,
 		post_url: req.body.post_url,
-		user_id: req.session.user_id
+		user_id: req.session.user_id,
+		photo: req.body.photo
 	})
 		.then(dbPostData => res.json(dbPostData))
 		.catch(err => {
@@ -91,6 +95,22 @@ router.post('/', withAuth, (req, res) => {
 			res.status(500).json(err);
 		});
 });
+
+// router.post('/uploads', upload.single('photo'), withAuth, (req, res, next) => {
+// 	if (req.file) {
+// 	} 
+// 	else throw 'err';
+// 	Post.create({
+// 		title: req.body.title,
+// 		post_url: req.body.post_url,
+// 		user_id: req.session.user_id,
+// 		photo: req.body.photo
+		
+// 	})
+// 	console.log(req.body);
+// 	console.log(req.file);
+// });
+
 
 // PUT /api/posts/lovedpost
 router.put('/upvote', withAuth, (req, res) => {

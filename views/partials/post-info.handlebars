@@ -1,15 +1,18 @@
 <article class="post">
 	<div class="title">
 		<a href='{{post_url}}' target='_blank'>{{title}}</a>
-		<span>({{format_url post_url}})</span>
+		
+		<br>
+		on {{format_date created_at}}
 	</div>
 
+
 	<div class="meta">
-		{{love_count}} {{format_plural '❤' love_count}} by {{user.username}} on
-		{{format_date created_at}}
-		|
 		<a href='/post/{{id}}'>{{comments.length}} {{format_plural 'comment'
 			comments.length}}</a>
-
+		
+	
+		{{love_count}} {{format_plural '❤' love_count}}
+		
 	</div>
 </article>
