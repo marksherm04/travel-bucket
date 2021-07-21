@@ -102,15 +102,33 @@
 	padding: 2% 4%;
       }
 
+      .card-container {
+            padding-top: 50px;
+      }
+
       .card {
 	background-color: lightgrey;
 	border-radius: 2px;
 	border-color: black;
-	display: flex;    
+	display: flex;  
+      margin: auto;
+      padding-top: 25px;
+      padding-bottom: 25px;
+      padding-left: 20px; 
+      padding-right: 20px; 
       }
 
       .card-group {
 	      display: flex;
+      }
+
+      .card-img-top {
+            padding-top: 10px;
+      }
+      
+      .img-fluid {
+            max-width: 100%;
+            height: auto;
       }
 
       .btn {
