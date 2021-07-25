@@ -10,6 +10,7 @@ router.get('/', (req, res) => {
 			'id',
 			'post_url',
 			'title',
+			"photo",
 			'created_at',
 			[sequelize.literal('(SELECT COUNT(*) FROM love WHERE post.id = love.post_id)'), 'love_count']
 		],
@@ -29,10 +30,15 @@ router.get('/', (req, res) => {
 		]
 	})
 		.then(dbPostData => {
-			const posts = dbPostData.map(post => post.get({ plain: true }));
+			const posts = dbPostData.map(post => {
+				post.photo =  `/uploads/${post.photo}`
 
+				return post.get({ plain: true })
+			});
+			console.log(posts)
 			res.render('homepage', {
 				posts,
+
 				loggedIn: req.session.loggedIn
 			});
 		})
@@ -60,9 +66,9 @@ router.get('/post/:id', (req, res) => {
 				model: Comment,
 				attributes: [
 					'id',
-					'comment_text', 
-					'post_id', 
-					'user_id', 
+					'comment_text',
+					'post_id',
+					'user_id',
 					'created_at'
 				],
 				include: {
