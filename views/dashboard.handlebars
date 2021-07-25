@@ -2,17 +2,19 @@
 <section>
 	<h2>Create New Post</h2>
 
-	<form class="new-post-form">
+	<form class="new-post-form" action="/api/posts/profile"  method="post" enctype="multipart/form-data">
 		<div>
 			<label for="post-title">Travel Location</label>
-			<input type="text" id="post-title" name="post-title" />
+			<input type="text" id="post-title" name="title" />
 		</div>
 		<div>
 			<label for="post_url">Blog or Travel Website Link</label>
-			<input id="post-url" name="post-url" />
+			<input id="post-url" name="post_url" />
 		</div>
+		 <input type="file" name="avatar" />
 		<br>
 		<button type="submit" class="btn">Submit Post</button>
+
 	</form>
 </section>
 <br>
