@@ -2,7 +2,7 @@
 
 
 ## Description
-Travel Bucket is an interactive application that allows users to create profiles and show previous adventures.  The user can keep track of all of their trips in the MyAdventures page. All page visitors can view others trips, but cannot comment or love a post until they have signed up.  The main website page shows all of the posts by all of the users with a main picture and travel location.  Users can interact on the comments page by asking questions to user that posted the adventure. This gives everyone accurate reviews and suggestions based on personal experience.  This applicaiton will continue to grow and add features. 
+Travel Bucket is an interactive application that allows users to create profiles and show previous adventures. The user can keep track of all of their trips in the MyAdventures page. All page visitors can view others trips, but cannot comment or love a post until they have signed up. The main website page shows all of the posts by all of the users with a main picture and travel location.  Users can interact on the comments page by asking questions to the user that posted the adventure. This gives everyone accurate reviews and suggestions based on personal experience.  The application will continue to grow and more features wll be added. 
 
 ## License Badge and Link (if applicable)
 [![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0) <br />
@@ -10,7 +10,7 @@ Travel Bucket is an interactive application that allows users to create profiles
 
   ## Table of Contents
 - [Description](#description)
-- [Installation](#dnstallation)
+- [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [Tests](#tests)
@@ -38,4 +38,4 @@ MPL-2.0
 
 ## Questions
 - Github Page: [marksherm04, heynev, rwaynewhite15](https://github.com/marksherm04, heynev, rwaynewhite15)
-- Email: marksherm04@gmail.com, vkheyne@gmail.com, rwaynewhite15@gmail.co
+- Email: marksherm04@gmail.com, vkheyne@gmail.com, rwaynewhite15@gmail.com
