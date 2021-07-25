@@ -3,7 +3,40 @@ const sequelize = require('../../config/connection');
 const { Post, User, Love, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 const multer = require('multer');
-const upload = multer({ dest: __dirname + '../../../uploads' });
+const path = require("path");
+// const upload = multer({ dest: __dirname + '../../../uploads' });
+var storage = multer.diskStorage({
+	destination: function (req, file, cb) {
+		cb(null, path.join(__dirname, '../../public/uploads'))
+	},
+	filename: function (req, file, cb) {
+		cb(null, file.originalname.replace(" ", ""))
+	}
+})
+
+var upload = multer({ storage: storage })
+
+router.post('/profile', withAuth, upload.single('avatar'), function (req, res, next) {
+	console.log({
+		title: req.body.title,
+		post_url: req.body.post_url,
+		user_id: req.session.user_id,
+		photo: req.file.originalname.replace(" ", "")
+	})
+	Post.create({
+		title: req.body.title,
+		post_url: req.body.post_url,
+		user_id: req.session.user_id,
+		photo: req.file.originalname
+	})
+		.then(dbPostData => res.redirect("/dashboard"))
+		.catch(err => {
+			console.log(err);
+			res.status(500).json(err);
+		});
+	// req.file is the `avatar` file
+	// req.body will hold the text fields, if there were any
+})
 
 
 // get all Posts
@@ -42,43 +75,43 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
 	Post.findOne({
-	  where: {
-	    id: req.params.id
-	  },
-	  attributes: [
-	    'id',
-	    'post_url',
-	    'title',
-	    'created_at',
-	    [sequelize.literal('(SELECT COUNT(*) FROM love WHERE post.id = love.post_id)'), 'love_count']
-	  ],
-	  include: [
-	    {
-	      model: Comment,
-	      attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-	      include: {
-		model: User,
-		attributes: ['username']
-	      }
-	    },
-	    {
-	      model: User,
-	      attributes: ['username']
-	    }
-	  ]
+		where: {
+			id: req.params.id
+		},
+		attributes: [
+			'id',
+			'post_url',
+			'title',
+			'created_at',
+			[sequelize.literal('(SELECT COUNT(*) FROM love WHERE post.id = love.post_id)'), 'love_count']
+		],
+		include: [
+			{
+				model: Comment,
+				attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+				include: {
+					model: User,
+					attributes: ['username']
+				}
+			},
+			{
+				model: User,
+				attributes: ['username']
+			}
+		]
 	})
-	  .then(dbPostData => {
-	    if (!dbPostData) {
-	      res.status(404).json({ message: 'No post found with this ID' });
-	      return;
-	    }
-	    res.json(dbPostData);
-	  })
-	  .catch(err => {
-	    console.log(err);
-	    res.status(500).json(err);
-	  });
-      });
+		.then(dbPostData => {
+			if (!dbPostData) {
+				res.status(404).json({ message: 'No post found with this ID' });
+				return;
+			}
+			res.json(dbPostData);
+		})
+		.catch(err => {
+			console.log(err);
+			res.status(500).json(err);
+		});
+});
 
 // create Post
 router.post('/', withAuth, (req, res) => {
@@ -105,7 +138,7 @@ router.post('/', withAuth, (req, res) => {
 // 		post_url: req.body.post_url,
 // 		user_id: req.session.user_id,
 // 		photo: req.body.photo
-		
+
 // 	})
 // 	console.log(req.body);
 // 	console.log(req.file);
