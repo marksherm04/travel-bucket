@@ -87,7 +87,6 @@ router.post('/', withAuth, (req, res) => {
 		title: req.body.title,
 		post_url: req.body.post_url,
 		user_id: req.session.user_id,
-		photo: req.body.photo
 	})
 		.then(dbPostData => res.json(dbPostData))
 		.catch(err => {
@@ -106,6 +105,11 @@ router.post('/uploads', upload.single('photo'), withAuth, (req, res, next) => {
 		user_id: req.session.user_id,
 		photo: req.body.photo
 		
+	})
+	.then(dbPostData => res.json(dbPostData))
+	.catch(err => {
+		console.log(err);
+		res.status(500).json(err);
 	})
 	console.log(req.body);
 	console.log(req.file);
