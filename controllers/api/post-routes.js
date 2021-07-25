@@ -129,21 +129,6 @@ router.post('/', withAuth, (req, res) => {
 		});
 });
 
-// router.post('/uploads', upload.single('photo'), withAuth, (req, res, next) => {
-// 	if (req.file) {
-// 	} 
-// 	else throw 'err';
-// 	Post.create({
-// 		title: req.body.title,
-// 		post_url: req.body.post_url,
-// 		user_id: req.session.user_id,
-// 		photo: req.body.photo
-
-// 	})
-// 	console.log(req.body);
-// 	console.log(req.file);
-// });
-
 
 // PUT /api/posts/lovedpost
 router.put('/upvote', withAuth, (req, res) => {
