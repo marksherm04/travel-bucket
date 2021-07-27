@@ -106,6 +106,16 @@
             color: #225ca3;
             padding: 14px 32px 14px 32px;
       }
+
+      h3 {
+            display: inline-block;
+            margin-top: 2.5rem;
+            margin-bottom: 2rem;
+            background-color: #e3f2fd;
+            border-radius: 20px;
+            color: #225ca3;
+            padding: 14px 32px 14px 32px; 
+      }
       
       main {
 	flex: 1;
@@ -242,24 +252,16 @@
                   float: none;
                   width: 100%;
                   text-align: center;
-                  padding: 8px 10px;
                 }
+            .new-post-body {
+                  float: center;
+                  text-align: center;  
+            }
             #logout {
                   float: none;
                   width: 100%;
                   text-align: center;
             }
-            .new-post-form {
-                  margin-top: 8rem;
-                  text-align: center;
-            }
-            .btn {
-                  margin-top: 1.5rem;
-            }
-            .row {
-                  margin-bottom: 10rem;
-            }
-            
           }
 
       @media screen and (max-width:768px){
@@ -272,16 +274,29 @@
                   text-align: center;
                   padding: 8px 10px;
                 }
+             h2 {
+                  margin: 10rem 0rem 0rem 0rem;
+                }
+            h3 {
+                  margin: 4rem 0rem 0rem 0rem; 
+            }
+            li {
+                  margin: 3rem 0rem 3rem 0rem;   
+            } 
             #logout {
                   float: none;
                   width: 100%;
+                  text-align: center;
             }
             .new-post-form {
                   margin-top: 8rem;
-                  text-align: center;
+                  float: center;
             }
             .btn {
                   margin-top: 1.5rem;
+            }
+            .row {
+                  margin-bottom: 10rem;
             }
           }
 
@@ -293,7 +308,7 @@
                   float: none;
                   width: 100%;
                   text-align: center;
-                  padding: 8px 10px;
+                  padding: 0px;
                 }
             #logout {
                   float: none;
@@ -306,12 +321,16 @@
             .btn {
                   margin-top: 1.5rem;
             }
+            .row {
+                  margin-bottom: 10rem;
+            }
           }
           
           @media screen and (min-width:1025px){
             img.responsive {
                   width: 100%;
             }
+            
           }
 
       footer {
