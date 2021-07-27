@@ -262,6 +262,9 @@
                   width: 100%;
                   text-align: center;
             }
+            main {
+                  margin-top: 7rem;
+            }
           }
 
       @media screen and (max-width:768px){
@@ -298,6 +301,9 @@
             .row {
                   margin-bottom: 10rem;
             }
+            main {
+                  margin-top: 7rem;
+            }
           }
 
       @media screen and (max-width:992px){
@@ -324,13 +330,18 @@
             .row {
                   margin-bottom: 10rem;
             }
+            main {
+                  margin-top: 7rem;
+            }
           }
           
           @media screen and (min-width:1025px){
             img.responsive {
                   width: 100%;
             }
-            
+            main {
+                  margin-top: 2.5rem;
+            }
           }
 
       footer {
