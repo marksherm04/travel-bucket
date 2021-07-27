@@ -218,6 +218,28 @@
 	margin-bottom: 5%;
       }
       
+      @media screen and (max-width:576px){
+            img.responsive {width: 100%;}
+         
+          }
+
+      @media screen and (max-width:768px){
+            img.responsive {width: 50px;}
+       
+          }
+
+      @media screen and (max-width:992px){
+            img.responsive {width: 100%;}
+       
+          }
+          
+          @media screen and (min-width:1025px){
+            img.responsive {width: 100%;}
+            
+          }
+          
+          img.responsive{height: auto;}
+
       footer {
         display: flex;
         justify-content: center;

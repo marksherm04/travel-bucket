@@ -1,25 +1,18 @@
 <div class="container-fluid">
 	<div class="row">
 		{{#each posts as |post|}}
-		<div class="col-4">
+		<div class="col-sm-4">
 
 			<div class="card mt-4" style="background-color:#e3f2fd;">
 
-				{{!-- LINE NEEDED FOR IMPORTING PHOTOS WITH MULTER --}}
-				{{!-- <img class="card-img-top" src="{{this.photo}}" alt="card image"> --}}
-
 				<img class="card-img-top">
+
 				{{!-- <a href="https://en.wikipedia.org/wiki/Boracay" target="_blank"> --}}
-				<img
-						src={{photo}}
-						width="300" height="225"
-						alt="Photo of White Beach in Boracay, Philippines"
-						style="border:0;" />
-						
-						</a>
+					<img src={{photo}} class="img-fluid" alt="" style="border:0;" />
+				</a>
 
 				<div class="card">
-					<div class="card-body">
+					<div class="card-body" class="responsive">
 
 						{{> post-info post }}
 
