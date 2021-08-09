@@ -11,6 +11,8 @@ Travel Bucket is an interactive application that allows users to create profiles
 - [Description](#description)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Deployed](#deployed)
+- [Screenshot](#screenshot)
 - [Contributing](#contributing)
 - [Tests](#tests)
 - [License](#license)
@@ -21,6 +23,9 @@ npm install, also npm install dotenv may be required, and followed by creating a
 
 ## Usage
 npm start will allow the applcation to be deployed on the localhost, otherwise see our deployed website below
+
+## Deployed Link
+https://travel-bucket.herokuapp.com/
 
 ## Screenshot
 <img width="2505" alt="Screen Shot 2021-07-25 at 5 40 32 PM" src="https://user-images.githubusercontent.com/81338255/126914306-017dd1f5-a55a-485d-9b21-fdcae5ffb005.png">
